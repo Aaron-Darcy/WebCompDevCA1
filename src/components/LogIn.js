@@ -3,9 +3,13 @@ import React, { useState } from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { userLogIns } from './userLogIns';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 // LogIn Function
 const Login = () => {
+
     // State Hooks for username and password
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -28,13 +32,17 @@ const Login = () => {
             // Redirect based on user role
             if (user.role.toLowerCase() === 'admin') {
                 navigate('/AdminDashboard');
-                
             } else {
-                navigate('/MainMenu');
+                navigate('/RestaurantMenu');
             }
+            
+            // Reloads page so that it automatically redirects to desired page
+            window.location.reload()
+           
+
         } else {
-            console.log("Invalid login credentials");
-            // You can display a notification or an alert here to let the user know about the invalid credentials
+            // Imported toast package for user friendly error message
+            toast.error("Invalid Username or Password, Please Try Again");
         }
     };
 

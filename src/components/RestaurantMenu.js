@@ -1,13 +1,14 @@
 import React from 'react'
 import LogoutButton from './LogoutButton';
 
-export const AdminDashboard = () => {
+
+export const RestaurantMenu = () => {
   return (
     <div>
-      AdminDashboard
+      MainMenu
       <LogoutButton />
     </div>
   )
 }
 
-export default AdminDashboard;
+export default RestaurantMenu;
