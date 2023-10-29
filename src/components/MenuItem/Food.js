@@ -1,31 +1,41 @@
+// Food.js Component
+//imports
 import React from 'react';
 import { foodItems } from '../../data/MenuItemData';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useOrder } from '../OrderContext';
 import { Link } from 'react-router-dom';
+import '../../stylesheets/MenuItemsStyle.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// The Food component to display list of food items.
+// Food component to display list of food items.
 export const Food = () => {
-  // Use the custom hook to get the addToOrder function.
+  // custom hook to get the addToOrder function.
   const { addToOrder } = useOrder();
+  
+  // Toastify Notification
+  const handleAddToOrder = (food) => {
+    addToOrder(food);
+    toast.success("Item Added To Order"); 
+  };
 
   return (
-    <div>
-      <h1>Food</h1>
-      <ul>
+    <div className="menu-container">
+      <h1 className="centered-text">Food</h1>
+      <div className="menu-items-container">
         {/* Map through each food item and display its details. */}
         {foodItems.map(food => (
-          <li key={food.id}>
-            <img src={food.img} alt={food.name} style={{ width: '100px' }} />
+          <div key={food.id} className="menu-item">
+            <img src={food.img} alt={food.name} />
             <h2>{food.name}</h2>
-            <p>Price: ${food.price.toFixed(2)}</p>
-            {/* Button to add the selected food item to the order. */}
-            <button className="btn btn-secondary mr-3" onClick={() => addToOrder(food)}>Add to Order</button>
-          </li>
+            <p>Price: €{food.price.toFixed(2)}</p>
+            <button className="btn btn-secondary" onClick={() => handleAddToOrder(food)}>Add to Order</button>
+          </div>
         ))}
-      </ul>
-      {/* Link to navigate to the checkout page. */}
-      <Link to="/checkout" className="btn btn-secondary mt-3">Go to Checkout</Link>
+      </div>
+      {/* checkout page */}
+      <Link to="/checkout" className="btn btn-secondary checkout-btn">Go to Checkout</Link>
     </div>
   );
 }

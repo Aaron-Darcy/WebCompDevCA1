@@ -12,8 +12,8 @@ function LogoutButton() {
     }
 
     return (
-        <Button variant="primary" onClick={handleLogout}>
-            LogOut
+        <Button variant="danger" onClick={handleLogout}>
+            Log Out
         </Button>
     );
 }

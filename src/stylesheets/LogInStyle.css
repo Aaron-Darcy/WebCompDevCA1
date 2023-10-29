@@ -1,0 +1,16 @@
+/* LogIn Page Style Sheet */
+.log-in-button{
+    margin-top: 10px;
+}
+
+.login-wrapper {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.login-logo {
+    height: 200px;
+    width: 300px; 
+    margin-bottom: 30px;
+    margin-right: -25px;
+}

@@ -5,6 +5,8 @@ import { userLogIns } from './userLogIns';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "../stylesheets/LogInStyle.css"
+import logInLogo from "../assets/images/LogInLogo.jpeg";
 
 
 // LogIn Function
@@ -47,37 +49,40 @@ const Login = () => {
     };
 
     return (
-        <Container>
-            <Row className="justify-content-md-center">
-                <Col md="4">
-                    <Form onSubmit={handleLogin}>
-                        <Form.Group controlId="formUsername">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter username"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
-                        </Form.Group>
+        <div className="login-wrapper">
+            <img src={logInLogo} alt="Login Logo" className="login-logo" />
+            <Container>
+                <Row className="justify-content-md-center">
+                    <Col md="4">
+                        <Form onSubmit={handleLogin}>
+                            <Form.Group controlId="formUsername">
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter username"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                            </Form.Group>
 
-                        <Form.Group controlId="formPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </Form.Group>
+                            <Form.Group controlId="formPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </Form.Group>
 
-                        <Button variant="primary" type="submit">
-                            Login
-                        </Button>
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
+                            <Button variant="btn btn-success" type="submit" className='log-in-button'>
+                                Log in
+                            </Button>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
+        </div>
     );
 }
 

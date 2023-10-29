@@ -1,0 +1,47 @@
+/* Centering the title */
+.centered-text {
+    text-align: center;
+  }
+  
+  /* Placing the Logout button at the top right */
+  .logout-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+  
+  /* Styling for menu images to ensure they are consistent in size and centered */
+  .menu-image-container {
+    height: 200px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* spacing below image before the button */
+  }
+  
+  .menu-image {
+    width: 150px;
+    height: auto;
+    max-height: 100%;
+  }
+  
+  /* Styling for the overall menu container and individual sections */
+  .menu-items-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px; /* spacing between sections */
+  }
+  
+  /* Additional style to ensure buttons are centered below images */
+  .menu-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centering items horizontally */
+  }
+  
+  /* Make the Link component behave as an inline-block for centering */
+  .menu-section a {
+    display: inline-block;
+    text-align: center;
+  }
+  

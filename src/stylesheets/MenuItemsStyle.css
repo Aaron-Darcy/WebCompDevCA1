@@ -1,0 +1,33 @@
+
+  /* Styling for the overall menu container and individual sections */
+  .menu-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .menu-item img {
+    max-width: 150px;
+    max-height: 150px;
+  }
+  
+  .menu-item-button {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .checkout-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 30px;
+    font-size: 18px;
+  }
+  

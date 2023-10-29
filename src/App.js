@@ -43,7 +43,7 @@ function App() {
           {/* RestaurantMenu Route: Check if user is a Customer */}
           <Route path="/RestaurantMenu" element={user && user.role.toLowerCase() === "customer" ? <RestaurantMenu /> : <Navigate to="/LogIn" />} />
 
-          {/* Routes for Cold Drinks, Food, and Hot Drinks */}
+          {/* Routes for Cold Drinks, Food, Hot Drinks and Checkout */}
           <Route path="/cold-drinks" element={user && user.role.toLowerCase() === "customer" ? <ColdDrinks /> : <Navigate to="/LogIn" />} />
           <Route path="/food" element={user && user.role.toLowerCase() === "customer" ? <Food /> : <Navigate to="/LogIn" />} />
           <Route path="/hot-drinks" element={user && user.role.toLowerCase() === "customer" ? <HotDrinks /> : <Navigate to="/LogIn" />} />
