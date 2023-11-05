@@ -1,3 +1,4 @@
+// MenuitemData.js
 // Individual image imports
 import tea from '../assets/images/tea.png';
 import coffee from '../assets/images/coffee.png';
@@ -9,6 +10,7 @@ import burgerchips from '../assets/images/burgerchips.png';
 import fishchips from '../assets/images/fishchips.png';
 import kebabchips from '../assets/images/kebabchips.png';
 
+// Array For each menu item
 const hotDrinkItems = [
   {
       id: 1,
