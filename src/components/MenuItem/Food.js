@@ -1,54 +1,106 @@
-// Food.Js
+// Food.js
 // Imports
-import React from 'react';
-import { useOrder } from '../OrderContext'; 
-import 'bootstrap/dist/css/bootstrap.min.css'; 
-import { Link } from 'react-router-dom'; 
-import '../../stylesheets/MenuItemsStyle.css'; 
-import { toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useOrder } from '../OrderContext';
+import { Link } from 'react-router-dom';
+import '../../stylesheets/MenuItemsStyle.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Food = () => {
   // Extracting functions and state from OrderContext
-  const { addToOrder, menuItems, deleteMenuItem } = useOrder();
+  const { addToOrder, menuItems, deleteMenuItem, addMenuItem } = useOrder();
 
-  // Handler for adding a hot drink to the order
-  const handleAddToOrder = (food) => {
-    addToOrder(food, 'food'); 
-    toast.success("Item Added To Order"); 
-  };
+  // State for new menu item form
+  const [newItem, setNewItem] = useState({
+    id: '',
+    name: '',
+    price: ''
+  });
 
-  // Function to handle deleting a food item from the menu
-  const handleDeleteItemFromMenu = (id) => {
-    deleteMenuItem(id, 'food'); 
-    toast.success("Item Removed from Menu"); 
-  };
-
-  // Check if the logged-in user is an admin
+  // Checking if the user is an admin for conditional rendering of the delete button
   const isAdmin = localStorage.getItem("userRole")?.toLowerCase() === 'admin';
+
+  // Handler for adding an item to the order
+  const handleAddToOrder = (item) => {
+    addToOrder(item, 'food');
+    toast.success("Item Added To Order");
+  };
+
+  // Handler for deleting a food item from the menu
+  const handleDeleteItemFromMenu = (id) => {
+    deleteMenuItem(id, 'food');
+    toast.success("Item Removed from Menu");
+  };
+
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewItem({ ...newItem, [name]: value });
+  };
+
+  // Handle form submission to add a new menu item
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addMenuItem({ ...newItem, price: parseFloat(newItem.price) }, 'food');
+    toast.success("New Item Added to Menu");
+    setNewItem({ id: '', name: '', price: '' });
+  }; 
 
   return (
     <div className="menu-container">
-      <h1 className="centered-text">Food</h1> 
+      <h1 className="centered-text">Food</h1>
       <div className="menu-items-container">
-        {/* Iterate over the food items and create an element for each */}
-        {menuItems.food.map(food => (
-          <div key={food.id} className="menu-item">
-            <img src={food.img} alt={food.name} /> 
-            <h2>{food.name}</h2> 
-            <p>Price: €{food.price.toFixed(2)}</p> 
-            {/* Add to Order button */}
-            <button className="btn btn-secondary" onClick={() => handleAddToOrder(food)}>Add to Order</button>
+        {/* Map through each food item and display its details. */}
+        {menuItems.food.map(item => (
+          <div key={item.id} className="menu-item">
+            <img src={item.img || 'default-image-url'} alt={item.name} />
+            <h2>{item.name}</h2>
+            <p>Price: €{item.price.toFixed(2)}</p>
+            <button className="btn btn-secondary" onClick={() => handleAddToOrder(item)}>Add to Order</button>
             {/* Delete from Menu button, shown only to admins */}
             {isAdmin && (
-              <button className="btn btn-danger" onClick={() => handleDeleteItemFromMenu(food.id)}>Delete from Menu</button>
+              <button className="btn btn-danger" onClick={() => handleDeleteItemFromMenu(item.id)}>Delete from Menu</button>
             )}
           </div>
         ))}
       </div>
-      {/* Link to the checkout page */}
+      {/* Link to the checkout page & main Menu */}
       <Link to="/checkout" className="btn btn-secondary checkout-btn">Go to Checkout</Link>
       <Link to="/RestaurantMenu" className="btn btn-secondary checkout-btn">Go to Menu</Link>
+
+      {/* Admin form for adding new items */}
+      {isAdmin && (
+        <form onSubmit={handleSubmit}>
+          {/* Form fields for item ID, name, and price */}
+          <input
+            type="text"
+            name="id"
+            value={newItem.id}
+            onChange={handleInputChange}
+            placeholder="ID"
+            required
+          />
+          <input
+            type="text"
+            name="name"
+            value={newItem.name}
+            onChange={handleInputChange}
+            placeholder="Name"
+            required
+          />
+          <input
+            type="number" 
+            name="price"
+            value={newItem.price}
+            onChange={handleInputChange}
+            placeholder="Price"
+            required
+          />
+          <button type="submit" className="btn btn-primary">Add Food Item</button>
+        </form>
+      )}
     </div>
   );
 };

@@ -10,6 +10,9 @@ import burgerchips from '../assets/images/burgerchips.png';
 import fishchips from '../assets/images/fishchips.png';
 import kebabchips from '../assets/images/kebabchips.png';
 
+// Default image
+export const defaultImage = require('../assets/images/defaultimage.jpeg');
+
 // Array For each menu item
 const hotDrinkItems = [
   {
@@ -85,4 +88,4 @@ const foodItems = [
 ]
 
 
-export  {hotDrinkItems,coldDrinkItems,foodItems}
+export  {hotDrinkItems,coldDrinkItems,foodItems }

@@ -2,14 +2,17 @@
 // Imports
 import React, { createContext, useContext, useState } from 'react';
 import { coldDrinkItems, hotDrinkItems, foodItems } from '../data/MenuItemData'; 
+import  { defaultImage } from '../data/MenuItemData';
 
 // Creating a context for the order system
 const OrderContext = createContext(); 
 
-// Exporting hook for access to the context
+// Exporting context hook 
 export const useOrder = () => useContext(OrderContext); 
 
+// Export 
 export const OrderProvider = ({ children }) => {
+
   // State to keep track of items in the order
   const [order, setOrder] = useState([]); 
 
@@ -22,7 +25,9 @@ export const OrderProvider = ({ children }) => {
 
   // Function to add an item to the order
   const addToOrder = (item) => {
+
     const existingItem = order.find(orderItem => orderItem.id === item.id);
+
     if (existingItem) {
       // If item already exists in order, increment quantity by 1
       setOrder(prevOrder =>
@@ -49,6 +54,13 @@ export const OrderProvider = ({ children }) => {
       [category]: prevItems[category].filter(item => item.id !== itemId) 
     }));
   };
+// Function to add a menu item from the menu items state
+  const addMenuItem = (newItem, category) => {
+    setMenuItems(prevItems => ({
+      ...prevItems,
+      [category]: [...prevItems[category], { ...newItem, img: defaultImage }] 
+    }));
+  };
 
   // Providing the context to its children, which includes functions and state
   return (
@@ -57,7 +69,8 @@ export const OrderProvider = ({ children }) => {
       addToOrder,
       removeFromOrder,
       menuItems,
-      deleteMenuItem
+      deleteMenuItem,
+      addMenuItem
     }}>
       {children}
     </OrderContext.Provider>

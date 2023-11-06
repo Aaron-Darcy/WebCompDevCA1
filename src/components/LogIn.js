@@ -2,7 +2,7 @@
 // Imports
 import React, { useState } from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
-import { userLogIns } from './userLogIns'; // Assume this contains user credentials
+import { userLogIns } from '../data/userLogIns';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,6 +11,7 @@ import logInLogo from "../assets/images/LogInLogo.jpeg";
 
 // Login component Function
 const Login = () => {
+    
     // State for username and password inputs
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

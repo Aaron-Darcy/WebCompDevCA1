@@ -15,7 +15,6 @@ function LogoutButton() {
         navigate("/LogIn"); 
         window.location.reload();
     }
-
     
     return (
         // Button event that triggers the handleLogout function
