@@ -41,6 +41,14 @@ npm install
 # start the server
 npm start
 ```
+## Images
+![image](https://github.com/Aaron-Darcy/WebCompDevProject2023/assets/48316970/fedfb838-cf3d-4344-bf1e-4c55f0422b74)
+![image](https://github.com/Aaron-Darcy/WebCompDevProject2023/assets/48316970/a842f150-69d8-415d-b64d-f46762209a0d)
+![image](https://github.com/Aaron-Darcy/WebCompDevProject2023/assets/48316970/58253a67-0e02-430d-9f5f-efee2ad7f725)
+![image](https://github.com/Aaron-Darcy/WebCompDevProject2023/assets/48316970/ad7daf19-b7bf-4cf9-bbfd-051378239fc5)
+![image](https://github.com/Aaron-Darcy/WebCompDevProject2023/assets/48316970/9112556d-c10e-4a8a-b557-da97fc252a7e)
+
+
 
 ## Author
 Aaron Darcy
