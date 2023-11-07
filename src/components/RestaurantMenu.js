@@ -2,60 +2,72 @@
 // imports
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogoutButton from './LogoutButton';
+import LogoutButton from './Authentication/LogoutButton';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import "../stylesheets/RestaurantMenuStyle.css"
-import sevenup from '../assets/images/7up.png';
 import burgerchips from '../assets/images/burgerchips.png';
 import tea from '../assets/images/tea.png';
+import { coldDrinksMenuImage } from '../data/MenuItemData';
 
 export const RestaurantMenu = () => {
   return (
-    <div>
-
+    <Container fluid="lg" className="restaurant-menu">
       {/* Logout Button at the top-right */}
-      <div className="logout-container">
-        <LogoutButton />
-      </div>
+      <Row>
+        <Col className="logout-container">
+          <LogoutButton />
+        </Col>
+      </Row>
 
       {/* Title */}
-      <h1 className="centered-text">Main Menu</h1>
-      
+      <Row>
+        <Col>
+          <h1 className="centered-text">Main Menu</h1>
+        </Col>
+      </Row>
+
       {/* Menu items */}
-      <div className="menu-items-container">
-      
+      <Row xs={1} md={3} className="g-4">
         {/* Cold Drinks Section */}
-        <div className="menu-section">
-          <div className="menu-image-container">
-            <img src={sevenup} alt="Cold Drinks" className="menu-image" />
-          </div>
-          <Link to="/cold-drinks">
-            <button className="btn btn-secondary btn-large">Cold Drinks</button>
-          </Link>
-        </div>
-        
+        <Col>
+          <Card className="menu-card">
+            <Card.Img variant="top" src={coldDrinksMenuImage} alt="Cold Drinks" />
+            <Card.Body>
+              <Card.Title>Cold Drinks</Card.Title>
+              <Link to="/cold-drinks" className="d-grid">
+                <Button className="btn btn-secondary btn-large w-100">View Cold Drinks</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
+
         {/* Food Section */}
-        <div className="menu-section">
-          <div className="menu-image-container">
-            <img src={burgerchips} alt="Food" className="menu-image" />
-          </div>
-          <Link to="/Food">
-            <button className="btn btn-secondary btn-large">Food</button>
-          </Link>
-        </div>
+        <Col>
+          <Card className="menu-card">
+            <Card.Img variant="top" src={burgerchips} alt="Food" />
+            <Card.Body>
+              <Card.Title>Food</Card.Title>
+              <Link to="/Food" className="d-grid">
+                <Button className="btn btn-secondary btn-large w-100">View Food Items</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
 
         {/* Hot Drinks Section */}
-        <div className="menu-section">
-          <div className="menu-image-container">
-            <img src={tea} alt="Hot Drinks" className="menu-image" />
-          </div>
-          <Link to="/hot-drinks">
-            <button className="btn btn-secondary btn-large">Hot Drinks</button>
-          </Link>
-        </div>
-        
-      </div>
-      
-    </div>
+        <Col>
+          <Card className="menu-card">
+            <Card.Img variant="top" src={tea} alt="Hot Drinks" />
+            <Card.Body>
+              <Card.Title>Hot Drinks</Card.Title>
+              <Link to="/hot-drinks" className="d-grid">
+                <Button className="btn btn-secondary btn-large w-100">View Hot Drinks</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

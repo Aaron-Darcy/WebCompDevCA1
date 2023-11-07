@@ -12,6 +12,7 @@ import kebabchips from '../assets/images/kebabchips.png';
 
 // Default image
 export const defaultImage = require('../assets/images/defaultimage.jpeg');
+export const coldDrinksMenuImage = require('../assets/images/colddrinkmenu.jpeg');
 
 // Array For each menu item
 const hotDrinkItems = [

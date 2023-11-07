@@ -3,8 +3,8 @@
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; 
 
-// LogoutButton function
 function LogoutButton() {
+
     // Hook to get the navigate function
     const navigate = useNavigate(); 
 

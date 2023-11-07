@@ -26,8 +26,26 @@
   
   .checkout-btn {
     display: block;
-    margin: 30px auto;
+    margin: 10px 5px ;
     padding: 10px 30px;
-    font-size: 18px;
+    font-size: 40px;
+    width: 100%;
   }
+
+  .card-title {
+    word-wrap: break-word;
+  }
+  
+  .card-text {
+    overflow-wrap: break-word;
+  }
+  
+  .card-img-top {
+    width: 100%; 
+    height: auto; 
+  }
+
+ 
+  
+  
   

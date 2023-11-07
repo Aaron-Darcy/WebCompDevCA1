@@ -1,6 +1,6 @@
 //App.js
 //Imports
-import Login from './components/LogIn';
+import Login from './components/Authentication/LogIn';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import RestaurantMenu from './components/RestaurantMenu';
 import ColdDrinks from './components/MenuItem/ColdDrinks';
@@ -8,7 +8,7 @@ import Food from './components/MenuItem/Food';
 import HotDrinks from './components/MenuItem/HotDrinks';
 import Checkout from './components/Checkout';
 import { ToastContainer } from 'react-toastify';
-import { OrderProvider } from './components/OrderContext';
+import { MenuOrderProvider } from './components/MenuOrderManager';
 
 //Main Function 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   const user = userRoleFromLocalStorage ? { role: userRoleFromLocalStorage } : null;
 
   return (
-    <OrderProvider>
+    <MenuOrderProvider>
       <Router>
         <ToastContainer />
         <Routes>
@@ -37,7 +37,7 @@ function App() {
           <Route path="/RestaurantMenu" element={user ? <RestaurantMenu userRole={user.role} /> : <Navigate to="/LogIn" />} />
         </Routes>
       </Router>
-    </OrderProvider>
+    </MenuOrderProvider>
   );
 }
 

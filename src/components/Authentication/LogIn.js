@@ -2,12 +2,12 @@
 // Imports
 import React, { useState } from 'react';
 import { Button, Form, Container, Row, Col } from 'react-bootstrap';
-import { userLogIns } from '../data/userLogIns';
+import { userLogIns } from '../../data/userLogIns';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "../stylesheets/LogInStyle.css"
-import logInLogo from "../assets/images/LogInLogo.jpeg";
+import "../../stylesheets/LogInStyle.css"
+import logInLogo from "../../assets/images/LogInLogo.jpeg";
 
 // Login component Function
 const Login = () => {
@@ -15,11 +15,14 @@ const Login = () => {
     // State for username and password inputs
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Hook to navigate to different routes
+    
+    //Hook To Navigate to Different Routes
+    const navigate = useNavigate();
   
     // Handler for login submit
     const handleLogin = (e) => {
       e.preventDefault();
+      
       // Find user in the userLogIns array
       const user = userLogIns.find(u => u.username === username && u.password === password);
       

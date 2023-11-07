@@ -40,3 +40,8 @@
     text-align: center;
   }
   
+  .btn-large {
+    padding: 20px 40px; 
+    font-size: 20px;    
+  }
+  

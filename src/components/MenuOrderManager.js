@@ -1,20 +1,18 @@
-// OrderContext.js
 // Imports
+// MenuOrderManager.js
 import React, { createContext, useContext, useState } from 'react';
-import { coldDrinkItems, hotDrinkItems, foodItems } from '../data/MenuItemData'; 
-import  { defaultImage } from '../data/MenuItemData';
+import { coldDrinkItems, hotDrinkItems, foodItems, defaultImage } from '../data/MenuItemData';
 
-// Creating a context for the order system
-const OrderContext = createContext(); 
+// Creating a context for managing menu orders and items
+const MenuOrderContext = createContext();
 
 // Exporting context hook 
-export const useOrder = () => useContext(OrderContext); 
+export const useMenuOrder = () => useContext(MenuOrderContext);
 
-// Export 
-export const OrderProvider = ({ children }) => {
+export const MenuOrderProvider = ({ children }) => {
 
   // State to keep track of items in the order
-  const [order, setOrder] = useState([]); 
+  const [order, setOrder] = useState([]);
 
   // State to keep track of available menu items
   const [menuItems, setMenuItems] = useState({
@@ -43,28 +41,41 @@ export const OrderProvider = ({ children }) => {
 
   // Function to remove an item from the order
   const removeFromOrder = (itemId) => {
-    setOrder(prevOrder => prevOrder.filter(orderItem => orderItem.id !== itemId));
+    setOrder(prevOrder =>
+      prevOrder.map(orderItem => {
+        // If this is the item to update and it has more than 1 quantity
+        if (orderItem.id === itemId && orderItem.qty > 1) {
+          // decrease qty by 1
+          return { ...orderItem, qty: orderItem.qty - 1 };
+        } else if (orderItem.id === itemId) {
+          // If qty is 1, filter out the item completely
+          return null;
+        }
+        return orderItem; // leave other item(s) unchanged
+      }).filter(item => item !== null) // Remove null entries, i.e., deleted items
+    );
   };
+
 
   // Function to delete a menu item from the menu items state
   const deleteMenuItem = (itemId, category) => {
     setMenuItems(prevItems => ({
       ...prevItems,
       // Remove the item from the specific category
-      [category]: prevItems[category].filter(item => item.id !== itemId) 
+      [category]: prevItems[category].filter(item => item.id !== itemId)
     }));
   };
-// Function to add a menu item from the menu items state
+  // Function to add a menu item from the menu items state
   const addMenuItem = (newItem, category) => {
     setMenuItems(prevItems => ({
       ...prevItems,
-      [category]: [...prevItems[category], { ...newItem, img: defaultImage }] 
+      [category]: [...prevItems[category], { ...newItem, img: defaultImage }]
     }));
   };
 
   // Providing the context to its children, which includes functions and state
   return (
-    <OrderContext.Provider value={{
+    <MenuOrderContext.Provider value={{
       order,
       addToOrder,
       removeFromOrder,
@@ -73,6 +84,6 @@ export const OrderProvider = ({ children }) => {
       addMenuItem
     }}>
       {children}
-    </OrderContext.Provider>
+    </MenuOrderContext.Provider>
   );
 };
