@@ -33,7 +33,7 @@ Presentation  10%
 ## Quickstart
 ```bash
 git clone https://github.com/Aaron-Darcy/WebCompDevProject2023 WebCompDevProject2023
-cd react-yelp-clone
+cd WebCompDevProject2023
 
 # install the dependencies
 npm install
