@@ -39,22 +39,25 @@ export const MenuOrderProvider = ({ children }) => {
     }
   };
 
-  // Function to remove an item from the order
+  // Function to remove a quantity of 1 from an item in the order
   const removeFromOrder = (itemId) => {
     setOrder(prevOrder =>
-      prevOrder.map(orderItem => {
-        // If this is the item to update and it has more than 1 quantity
-        if (orderItem.id === itemId && orderItem.qty > 1) {
-          // decrease qty by 1
-          return { ...orderItem, qty: orderItem.qty - 1 };
-        } else if (orderItem.id === itemId) {
-          // If qty is 1, filter out the item completely
-          return null;
+      prevOrder.reduce((newOrder, item) => {
+        
+        // If the current item matches the item to remove, and it has more than 1 quantity
+        if (item.id === itemId && item.qty > 1) {
+          // Add the item back with one less in quantity
+          newOrder.push({ ...item, qty: item.qty - 1 });
+        } else if (item.id !== itemId) {
+          // If it's not the item to remove, add it back to the new order array
+          newOrder.push(item);
         }
-        return orderItem; // leave other item(s) unchanged
-      }).filter(item => item !== null) // Remove null entries, i.e., deleted items
+        // If the item only had 1 qty or it's not the item to remove, it's already handled above
+        return newOrder;
+      }, []) // Start with an empty array to build the new order
     );
   };
+
 
 
   // Function to delete a menu item from the menu items state
