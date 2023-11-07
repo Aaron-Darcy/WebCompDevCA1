@@ -31,9 +31,6 @@ Correct Ordering printout  10%
 Presentation  10% 
 
 ## Quickstart
-
-First, clone the repository:
-
 ```bash
 git clone https://github.com/Aaron-Darcy/WebCompDevProject2023 WebCompDevProject2023
 cd react-yelp-clone
